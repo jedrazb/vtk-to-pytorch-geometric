@@ -1,7 +1,7 @@
 import argparse
 
 from dataset import Dataset
-from utils import create_data_list
+from utils import read_data_objects
 
 import torch_geometric.transforms as T
 
@@ -16,11 +16,11 @@ if __name__ == '__main__':
 
     pre_transform, transform = T.NormalizeScale(), T.SamplePoints(num_points)
 
-    data = create_data_list()
+    data_objects = read_data_objects()
 
     Dataset(
         dataset_args.path,
         transform,
         pre_transform,
-        data
+        data_objects
     )

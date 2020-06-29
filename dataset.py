@@ -40,15 +40,15 @@ class Dataset(InMemoryDataset):
         root,
         transform=None,
         pre_transform=None,
-        data=None
+        data_objects=None
     ):
-        self.data = data
+        self.data_objects = data_objects
         super(Dataset, self).__init__(root, transform, pre_transform)
         self.data, self.slices = torch.load(self.processed_paths[0])
 
     @property
     def raw_file_names(self):
-        return [x['path'] for x in self.data]
+        return [x['path'] for x in self.data_objects]
 
     @property
     def processed_file_names(self):
@@ -61,7 +61,7 @@ class Dataset(InMemoryDataset):
         print('Processing data ...')
 
         data_list = []
-        for data_obj in tqdm(self.data):
+        for data_obj in tqdm(self.data_objects):
             data_path = data_obj['path']
             label = data_obj['y']
             poly = read_PolyData(data_path)

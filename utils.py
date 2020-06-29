@@ -3,7 +3,7 @@ import numpy as np
 import pyvista as pv
 
 
-def create_data_list():
+def read_data_objects():
     '''
     Function to create a list of 3d data objects along with some metadata. The output
     of this function should be of a shape:
