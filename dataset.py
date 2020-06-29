@@ -29,7 +29,7 @@ class Dataset(InMemoryDataset):
         {
             'path': (string, required): path to the vtk object.
             'y: (int, required): class label.
-            ... all other attributes will be passed to  
+            ... all other kwargs will be passed to  
             :obj:`torch_geometric.data.Data` instance.
         }
         (default: :obj:`None`)
@@ -58,15 +58,13 @@ class Dataset(InMemoryDataset):
         pass
 
     def process(self):
-        print('Processing data ...')
-
         data_list = []
         for data_obj in tqdm(self.data_objects):
             data_path = data_obj['path']
             label = data_obj['y']
             poly = read_PolyData(data_path)
             verts, tris = PolyDataToNumpy(poly)
-            extra_kwargs = get_extra_kwargs(data)
+            extra_kwargs = get_extra_kwargs(data_obj)
             data = Data(
                 pos=torch.tensor(verts),
                 face=torch.tensor(tris.T),
