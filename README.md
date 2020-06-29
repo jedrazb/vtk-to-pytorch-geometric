@@ -18,7 +18,7 @@ First implement `read_data_objects` function in `utils.py`. You need to represen
 Note that you can pass more attributes to the dict. Those will be automatically passed to the PyTorch Geometric abstraction as well. 
 
 
-### Generate and saved your PyTorch Geometric Dataset
+### Generate and save your PyTorch Geometric Dataset
 
 To generate the dataset use `generate.py` script
 
